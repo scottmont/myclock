@@ -2,8 +2,8 @@ from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor, Adafruit_Step
 import urllib,json
 import time
 import atexit
-url = "https://www.followmee.com/api/tracks.aspx?key=fe26a8c25f3235fb56b041665c80f363&username=scottmont&output=json&function=currentforalldevices"
 mh = Adafruit_MotorHAT()
+from apikey import *
 def turnOffMotors():
         mh.getMotor(1).run(Adafruit_MotorHAT.RELEASE)
         mh.getMotor(2).run(Adafruit_MotorHAT.RELEASE)
