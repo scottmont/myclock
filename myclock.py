@@ -126,7 +126,7 @@ def finder():
 		screen.addstr(2, 50, "Clock has been started")
 		screen.addstr(4, 50, "----------------")
 		screen.addstr(8, 50, "----------------")
-		screen.addstr(13, 4, "Users current Latitute Longitute and stepper location")
+		screen.addstr(13, 4, "Current Latitute Longitute and stepper location")
 		screen.addstr(14, 4, "-----------------------------------------------------")
 		screen.addstr(19, 4, "Last moves on the Clock")
                 screen.addstr(20, 4, "-----------------------------------------------------")
