@@ -131,7 +131,7 @@ def finder():
 		# Where is Scott?
 		if 43.6358 <= float(latit) <= 43.6378 and -79.4185 >= float(longt) >= -79.4248 :
 			newlocation = 100
-        		screen.addstr(15, 70, "scott at work\n" )
+        		screen.addstr(15, 90, "scott at work\n" )
 			motor1thread = threading.Thread(target=motor1)
 			motor1thread.start()
 		elif 43.6760 <= float(latit) <= 43.6769 and -79.3425 >= float(longt) >= -79.3439 :
@@ -221,6 +221,7 @@ while x != ord('4'):
 	 try:
     	 	finderthread = threading.Thread(target=finder)
     	 	finderthread.start()
+		screen.refresh()
 	 except (KeyboardInterrupt, SystemExit):
     	 	cleanup_stop_thread();
     	  	sys.exit()
