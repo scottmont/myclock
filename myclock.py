@@ -8,7 +8,7 @@ import curses
 from os import system
 sys.stdout = open('myclock.log', 'w')
 global curlocation,curlocation2,curlocation3
-url = "https://www.followmee.com/api/tracks.aspx?key=fe26a8c25f3235fb56b041665c80f363&username=scottmont&output=json&function=currentforalldevices"
+from apikey import *
 mh = Adafruit_MotorHAT()
 
 def turnOffMotors():
