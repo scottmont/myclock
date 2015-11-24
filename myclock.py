@@ -134,38 +134,21 @@ def finder():
         screen.addstr(19, 4, "Last moves on the Clock")
         screen.addstr(20, 4, "-----------------------------------------------------")
         #Where are the Users?
-        for i in userlocat:
-            if float(i[2]) <= float(latit) <= float(i[3]) and float(i[4]) >= float(longt) >= float(i[5]):
-                newlocation = int(i[1])
-                screen.addstr(5, 40, "%s at %s" %(user1, i[0]))
-                motor1thread = threading.Thread(target=motor1)
-                motor1thread.start()
-            else:
-                screen.addstr(5, 40, "%s is at an unknown location %f %f\n" % (user1, latit, longt))
-                newlocation = 200
-                motor1thread = threading.Thread(target=motor1)
-                motor1thread.start()
+        for i in user1locat:
+		if float(i[2]) <= float(latit) <= float(i[3]) and float(i[4]) >= float(longt) >= float(i[5]):
+			newlocation = int(i[1])
+                	screen.addstr(7, 40, "%s at %s" %(user1, i[0]))
+                	motor1thread = threading.Thread(target=motor1)
+                	motor1thread.start()
+		else:
+               		screen.addstr(5, 40, "%s is at an unknown location %f %f\n" % (user1, latit, longt))
+              		newlocation = 200
+               		motor1thread = threading.Thread(target=motor1)
+               		motor1thread.start()
         screen.addstr(2, 4, time.strftime("%a, %d %b %Y %H:%M"))
         screen.refresh()
         time.sleep(10)
 
-def get_param(prompt_string):
-     screen.clear()
-     screen.border(0)
-     screen.addstr(2, 2, prompt_string)
-     screen.refresh()
-     input = screen.getstr(10, 10, 60)
-     return input
-def execute_cmd(cmd_string):
-     system("clear")
-     a = system(cmd_string)
-     print ("")
-     if a == 0:
-          print ("Command executed correctly")
-     else:
-          print ("Command terminated with error")
-     raw_input("Press enter")
-     print ("")
 x = 0
 fthread = 0
 class StopThread(StopIteration):
