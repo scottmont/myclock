@@ -34,7 +34,7 @@ def motor1():
         except NameError:
             curlocation = 0
         locationd = newlocation
-	times = time.strftime('%H:%M:%S')
+        times = time.strftime('%H:%M:%S')
         if int(curlocation) > int(locationd):
             oldlocation = curlocation
             move = int(curlocation) - int(locationd)
@@ -64,7 +64,7 @@ def motor2():
         except NameError:
             curlocation2 = 0
         locationd = newlocation2
-	timej = time.strftime('%H:%M:%S')
+        timej = time.strftime('%H:%M:%S')
         if int(curlocation2) > int(locationd):
                 oldlocation = curlocation2
                 move = int(curlocation2) - int(locationd)
@@ -94,7 +94,7 @@ def motor3():
         except NameError:
                 curlocation3 = 0
         locationd = newlocation3
-	timem = time.strftime('%H:%M:%S')
+        timem = time.strftime('%H:%M:%S')
         if int(curlocation3) > int(locationd):
                 oldlocation = curlocation3
                 move = int(curlocation3) - int(locationd)
@@ -186,7 +186,7 @@ while x != ord('4'):
      if x == ord('4'):
         curses.endwin()
         finderthread.stop()
-	finderthread.join()
+        finderthread.join()
         exit()
 curses.endwin()
 
