@@ -133,60 +133,18 @@ def finder():
         screen.addstr(14, 4, "-----------------------------------------------------")
         screen.addstr(19, 4, "Last moves on the Clock")
         screen.addstr(20, 4, "-----------------------------------------------------")
-        # Where is User1
-        if float(user1work[0]) <= float(latit) <= float(user1work[1]) and float(user1work[2]) >= float(longt) >= float(user1work[3]):
-            newlocation = 100
-            screen.addstr(5, 40, "%s at work" %(user1))
-            print "%s at work" %(user1)
-            motor1thread = threading.Thread(target=motor1)
-            motor1thread.start()
-        elif float(user1home[0]) <= float(latit) <= float(user1home[1]) and float(user1home[2]) >= float(longt) >= float(user1home[3]) :
-            newlocation = 50
-            screen.addstr(5, 40, "%s at home" %(user1))
-            motor1thread = threading.Thread(target=motor1)
-            motor1thread.start()
-        else:
+        #Where are the Users?
+        for i in userlocat:
+            if float(i[2]) <= float(latit) <= float(i[3]) and float(i[4]) >= float(longt) >= float(i[5]):
+                newlocation = int(i[1])
+                screen.addstr(5, 40, "%s at %s" %(user1, i[0]))
+                motor1thread = threading.Thread(target=motor1)
+                motor1thread.start()
+            else:
                 screen.addstr(5, 40, "%s is at an unknown location %f %f\n" % (user1, latit, longt))
                 newlocation = 200
                 motor1thread = threading.Thread(target=motor1)
                 motor1thread.start()
-        # Where is User2
-        if 43.6909 <= float(jlatit) <= 43.6936 and -79.3315 >= float(jlongt) >= -79.3344 :
-            newlocation2 = 100
-            screen.addstr(6, 40, "%s  at work" %(user2))
-            motor2thread = threading.Thread(target=motor2)
-            motor2thread.start()
-        elif 43.6760 <= float(jlatit) <= 43.6769 and -79.3425 >= float(jlongt) >= -79.3439 :
-            newlocation2 = 50
-            screen.addstr(6, 40, "%s at home" %(user2))
-            motor2thread = threading.Thread(target=motor2)
-            motor2thread.start()
-        elif 43.6781 <= float(jlatit) <= 43.6786 and -79.34619 >= float(jlongt) >= -79.34751 :
-            newlocation2 = 75
-            screen.addstr(6, 40, "%s at daycare" %(user2))
-            motor2thread = threading.Thread(target=motor2)
-            motor2thread.start()
-        else:
-                screen.addstr(6, 40, "%s is at an unknown location %f %f\n " % (user2, jlatit, jlongt))
-                newlocation2 = 200
-                motor1thread = threading.Thread(target=motor2)
-                motor1thread.start()
-        # Where is User3?
-        if 43.6909 <= float(mlatit) <= 43.6936 and -79.3315 >= float(mlongt) >= -79.3344 :
-            newlocation3 = 100
-            screen.addstr(7, 40, "%s at school" %(user3))
-            motor3thread = threading.Thread(target=motor3)
-            motor3thread.start()
-        elif 43.6760 <= float(mlatit) <= 43.6769 and -79.3425 >= float(mlongt) >= -79.3439 :
-            newlocation3 = 50
-            screen.addstr(7, 40, "%s at home" %(user3))
-            motor3thread = threading.Thread(target=motor3)
-            motor3thread.start()
-        else:
-            newlocation3 = 200
-            screen.addstr(7, 40, "%s is at an unknown location %f %f\n" % (user3, mlatit, mlongt))
-            motor3thread = threading.Thread(target=motor3)
-            motor3thread.start()
         screen.addstr(2, 4, time.strftime("%a, %d %b %Y %H:%M"))
         screen.refresh()
         time.sleep(10)
