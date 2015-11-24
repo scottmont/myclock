@@ -99,20 +99,20 @@ def motor3():
                 oldlocation = curlocation3
                 move = int(curlocation3) - int(locationd)
                 curlocation3 = int(curlocation3) - int(move)
-                screen.addstr(25, 4, "%s : maxim arm from %d to %d\n " % (timem, oldlocation, curlocation3))
-                screen.addstr(26, 4, "%s : maxim arm %d Microsteps BACKWARD to %s\n"  % (timem, move, curlocation3))
+                screen.addstr(25, 4, "%s : %s arm from %d to %d\n " % (timem, user3, oldlocation, curlocation3))
+                screen.addstr(26, 4, "%s : %s arm %d Microsteps BACKWARD to %s\n"  % (timem, user3, move, curlocation3))
                 myStepper2.step( int(move), Adafruit_MotorHAT.FORWARD, Adafruit_MotorHAT.DOUBLE)
                 turnOffMotors()
         elif int(curlocation3) < int(locationd):
                 oldlocation = curlocation3
                 move = int(locationd) - int(curlocation3)
                 curlocation3 = int(oldlocation) + int(move)
-                screen.addstr(25, 4, "%s : maxim arm from %s to %s\n" % (timem, oldlocation, curlocation3))
-                screen.addstr(26, 4, "%s : maxim arm %s Microsteps FOREWARD to %s\n"  % (timem, move, curlocation3))
+                screen.addstr(25, 4, "%s : %s arm from %s to %s\n" % (timem, user3, oldlocation, curlocation3))
+                screen.addstr(26, 4, "%s : %s arm %s Microsteps FOREWARD to %s\n"  % (timem, user3, move, curlocation3))
                 myStepper2.step( int(move), Adafruit_MotorHAT.BACKWARD,  Adafruit_MotorHAT.DOUBLE)
                 turnOffMotors()
         else:
-            screen.addstr(17, 4, "maxim lat,long %f,%f and stepper %d\n" % (mlatit,mlongt,curlocation3))
+            screen.addstr(17, 4, "%s lat,long %f,%f and stepper %d\n" % (mlatit,mlongt,curlocation3))
             return
 def finder():
     while True:
@@ -173,17 +173,17 @@ def finder():
         # Where is User3?
         if 43.6909 <= float(mlatit) <= 43.6936 and -79.3315 >= float(mlongt) >= -79.3344 :
             newlocation3 = 100
-            screen.addstr(7, 40, "maxim at school" )
+            screen.addstr(7, 40, "%s at school" %(user3))
             motor3thread = threading.Thread(target=motor3)
             motor3thread.start()
         elif 43.6760 <= float(mlatit) <= 43.6769 and -79.3425 >= float(mlongt) >= -79.3439 :
             newlocation3 = 50
-            screen.addstr(7, 40, "maxim at home" )
+            screen.addstr(7, 40, "%s at home" %(user3))
             motor3thread = threading.Thread(target=motor3)
             motor3thread.start()
         else:
             newlocation3 = 200
-            screen.addstr(7, 40, "dunno where maxim is %f %f\n" % (mlatit, mlongt))
+            screen.addstr(7, 40, "dunno where %s is %f %f\n" % (user3, mlatit, mlongt))
             motor3thread = threading.Thread(target=motor3)
             motor3thread.start()
         screen.addstr(2, 4, time.strftime("%a, %d %b %Y %H:%M"))
