@@ -137,6 +137,7 @@ def finder():
         if float(user1work[0]) <= float(latit) <= float(user1work[1]) and float(user1work[2]) >= float(longt) >= float(user1work[3]):
             newlocation = 100
             screen.addstr(5, 40, "%s at work" %(user1))
+            print "%s at work" %(user1)
             motor1thread = threading.Thread(target=motor1)
             motor1thread.start()
         elif float(user1home[0]) <= float(latit) <= float(user1home[1]) and float(user1home[2]) >= float(longt) >= float(user1home[3]) :
