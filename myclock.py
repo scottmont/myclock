@@ -34,24 +34,25 @@ def motor1():
         except NameError:
             curlocation = 0
         locationd = newlocation
+	times = time.strftime('%H:%M:%S')
         if int(curlocation) > int(locationd):
             oldlocation = curlocation
             move = int(curlocation) - int(locationd)
             curlocation = int(curlocation) - int(move)
-            screen.addstr(21, 4, "scott arm from %d to %d\n " % (oldlocation, curlocation))
-            screen.addstr(22, 4,  "scott arm %d Microsteps BACKWARD to %d\n"  % (move, curlocation))
+            screen.addstr(21, 4, "%s : %s arm from %d to %d" % (times, user1, oldlocation, curlocation))
+            screen.addstr(22, 4, "%s : %s arm %d Microsteps BACKWARD to %d\n"  % (times, user1, move, curlocation))
             myStepper1.step( int(move), Adafruit_MotorHAT.FORWARD, Adafruit_MotorHAT.DOUBLE)
             turnOffMotors()
         elif int(curlocation) < int(locationd):
             oldlocation = curlocation
             move = int(locationd) - int(curlocation)
             curlocation = int(oldlocation) + int(move)
-            screen.addstr(21, 4, "scott arm from %s to %s\n" % (oldlocation, curlocation))
-            screen.addstr(22, 4, "scott arm %s Microsteps FOREWARD to %s\n"  % (move, curlocation))
+            screen.addstr(21, 4, "%s : %s arm from %s to %s" % (times, user1, oldlocation, curlocation))
+            screen.addstr(22, 4, "%s : %s arm %s Microsteps FOREWARD to %s"  % (times, user1, move, curlocation))
             myStepper1.step( int(move), Adafruit_MotorHAT.BACKWARD,  Adafruit_MotorHAT.DOUBLE)
             turnOffMotors()
         else:
-            screen.addstr(15, 4, "scott lat,long %f,%f and stepper %d\n" % (latit,longt,curlocation))
+            screen.addstr(15, 4, "%s lat,long %f,%f and stepper %d\n" % (user1, latit,longt,curlocation))
         return
 def motor2():
     while True:
@@ -62,25 +63,26 @@ def motor2():
             curlocation2
         except NameError:
             curlocation2 = 0
-            locationd = newlocation2
+        locationd = newlocation2
+	timej = time.strftime('%H:%M:%S')
         if int(curlocation2) > int(locationd):
                 oldlocation = curlocation2
                 move = int(curlocation2) - int(locationd)
                 curlocation2 = int(curlocation2) - int(move)
-                screen.addstr(22, 4, "juliana arm from %d to %d\n " % (oldlocation, curlocation2))
-                screen.addstr(23, 4, "juliana arm %d Microsteps BACKWARD to %d\n"  % (move, curlocation2))
+                screen.addstr(23, 4, "%s : %s arm from %d to %d\n " % (timej, user2, oldlocation, curlocation2))
+                screen.addstr(24, 4, "%s : %s arm %d Microsteps BACKWARD to %d\n"  % (timej, user2, move, curlocation2))
                 myStepper2.step( int(move), Adafruit_MotorHAT.FORWARD, Adafruit_MotorHAT.DOUBLE)
                 turnOffMotors()
         elif int(curlocation2) < int(locationd):
                 oldlocation = curlocation2
                 move = int(locationd) - int(curlocation2)
                 curlocation2 = int(oldlocation) + int(move)
-                screen.addstr(22, 4, "juliana arm from %s to %s\n" % (oldlocation, curlocation2))
-                screen.addstr(23, 4, "juliana arm %s Microsteps FOREWARD to %s\n"  % (move, curlocation2))
+                screen.addstr(23, 4, "%s : %s arm from %s to %s\n" % (timej, user2, oldlocation, curlocation2))
+                screen.addstr(24, 4, "%s : %s arm %s Microsteps FOREWARD to %s\n"  % (timej, user2, move, curlocation2))
                 myStepper2.step( int(move), Adafruit_MotorHAT.BACKWARD,  Adafruit_MotorHAT.DOUBLE)
                 turnOffMotors()
         else:
-            screen.addstr(16, 4, "juliana lat,long %f,%f and stepper %d\n" % (jlatit,jlongt,curlocation2))
+            screen.addstr(16, 4, "%s lat,long %f,%f and stepper %d\n" % (user2,jlatit,jlongt,curlocation2))
         return
 def motor3():
     while True:
@@ -92,20 +94,21 @@ def motor3():
         except NameError:
                 curlocation3 = 0
         locationd = newlocation3
+	timem = time.strftime('%H:%M:%S')
         if int(curlocation3) > int(locationd):
                 oldlocation = curlocation3
                 move = int(curlocation3) - int(locationd)
                 curlocation3 = int(curlocation3) - int(move)
-                screen.addstr(24, 4, "maxim arm from %d to %d\n " % (oldlocation, curlocation3))
-                screen.addstr(25, 4, "maxim arm %d Microsteps BACKWARD to %s\n"  % (move, curlocation3))
+                screen.addstr(25, 4, "%s : maxim arm from %d to %d\n " % (timem, oldlocation, curlocation3))
+                screen.addstr(26, 4, "%s : maxim arm %d Microsteps BACKWARD to %s\n"  % (timem, move, curlocation3))
                 myStepper2.step( int(move), Adafruit_MotorHAT.FORWARD, Adafruit_MotorHAT.DOUBLE)
                 turnOffMotors()
         elif int(curlocation3) < int(locationd):
                 oldlocation = curlocation3
                 move = int(locationd) - int(curlocation3)
                 curlocation3 = int(oldlocation) + int(move)
-                screen.addstr(24, 4, "maxim arm from %s to %s\n" % (oldlocation, curlocation3))
-                screen.addstr(25, 4, "maxim arm %s Microsteps FOREWARD to %s\n"  % (move, curlocation3))
+                screen.addstr(25, 4, "%s : maxim arm from %s to %s\n" % (timem, oldlocation, curlocation3))
+                screen.addstr(26, 4, "%s : maxim arm %s Microsteps FOREWARD to %s\n"  % (timem, move, curlocation3))
                 myStepper2.step( int(move), Adafruit_MotorHAT.BACKWARD,  Adafruit_MotorHAT.DOUBLE)
                 turnOffMotors()
         else:
@@ -123,64 +126,64 @@ def finder():
         mlatit = data['Data'][2]['Latitude']
         mlongt = data['Data'][2]['Longitude']
         global newlocation,newlocation2,newlocation3
-        screen.addstr(2, 50, "Clock has been started")
-        screen.addstr(4, 50, "----------------")
-        screen.addstr(8, 50, "----------------")
+        screen.addstr(2, 40, "Clock has been started")
+        screen.addstr(4, 40, "----------------")
+        screen.addstr(8, 40, "----------------")
         screen.addstr(13, 4, "Current Latitute Longitute and stepper location")
         screen.addstr(14, 4, "-----------------------------------------------------")
         screen.addstr(19, 4, "Last moves on the Clock")
         screen.addstr(20, 4, "-----------------------------------------------------")
-        # Where is Scott?
+        # Where is User1
         if 43.6358 <= float(latit) <= 43.6378 and -79.4185 >= float(longt) >= -79.4248 :
             newlocation = 100
-            screen.addstr(5, 50, "scott at work\n" )
+            screen.addstr(5, 40, "%s at work" %(user1))
             motor1thread = threading.Thread(target=motor1)
             motor1thread.start()
         elif 43.6760 <= float(latit) <= 43.6769 and -79.3425 >= float(longt) >= -79.3439 :
             newlocation = 50
-            screen.addstr(5, 50, "scott at home" )
+            screen.addstr(5, 40, "%s at home" %(user1))
             motor1thread = threading.Thread(target=motor1)
             motor1thread.start()
         else:
-                screen.addstr(5, 50, "dunno where scott is %f %f" % (latit, longt))
+                screen.addstr(5, 40, "dunno where %s is %f %f" % (user1, latit, longt))
                 newlocation = 200
                 motor1thread = threading.Thread(target=motor1)
                 motor1thread.start()
-        # Where is Juliana?
+        # Where is User2
         if 43.6909 <= float(jlatit) <= 43.6936 and -79.3315 >= float(jlongt) >= -79.3344 :
             newlocation2 = 100
-            screen.addstr(8, 50, "juliana at work" )
+            screen.addstr(8, 40, "%s  at work" %(user2))
             motor2thread = threading.Thread(target=motor2)
             motor2thread.start()
         elif 43.6760 <= float(jlatit) <= 43.6769 and -79.3425 >= float(jlongt) >= -79.3439 :
             newlocation2 = 50
-            screen.addstr(6, 50, "juliana at home")
+            screen.addstr(6, 40, "%s at home" %(user2))
             motor2thread = threading.Thread(target=motor2)
             motor2thread.start()
         elif 43.6781 <= float(jlatit) <= 43.6786 and -79.34619 >= float(jlongt) >= -79.34751 :
             newlocation2 = 75
-            screen.addstr(6, 50, "juliana at daycare")
+            screen.addstr(6, 40, "%s at daycare" %(user2))
             motor2thread = threading.Thread(target=motor2)
             motor2thread.start()
         else:
-                screen.addstr(6, 50, "dunno where juliana is  %f %f\n " % (jlatit, jlongt))
+                screen.addstr(6, 40, "dunno where %s is  %f %f\n " % (user2, jlatit, jlongt))
                 newlocation2 = 200
                 motor1thread = threading.Thread(target=motor2)
                 motor1thread.start()
-        # Where is Maxim?
+        # Where is User3?
         if 43.6909 <= float(mlatit) <= 43.6936 and -79.3315 >= float(mlongt) >= -79.3344 :
             newlocation3 = 100
-            screen.addstr(7, 50, "maxim at school" )
+            screen.addstr(7, 40, "maxim at school" )
             motor3thread = threading.Thread(target=motor3)
             motor3thread.start()
         elif 43.6760 <= float(mlatit) <= 43.6769 and -79.3425 >= float(mlongt) >= -79.3439 :
             newlocation3 = 50
-            screen.addstr(7, 50, "maxim at home" )
+            screen.addstr(7, 40, "maxim at home" )
             motor3thread = threading.Thread(target=motor3)
             motor3thread.start()
         else:
             newlocation3 = 200
-            screen.addstr(7, 50, "dunno where maxim is %f %f\n" % (mlatit, mlongt))
+            screen.addstr(7, 40, "dunno where maxim is %f %f\n" % (mlatit, mlongt))
             motor3thread = threading.Thread(target=motor3)
             motor3thread.start()
         screen.addstr(2, 4, time.strftime("%a, %d %b %Y %H:%M"))
@@ -213,7 +216,6 @@ threading.SystemExit = SystemExit, StopThread
 class finderthread(threading.Thread):
     def _bootstrap(self, stop_thread=False):
         def stop():
-            nonlocal stop_thread
             stop_thread = True
             self.stop = stop
         def tracer(*_):
@@ -242,6 +244,7 @@ while x != ord('4'):
      if x == ord('4'):
         curses.endwin()
         finderthread.stop()
+	finderthread.join()
         exit()
 curses.endwin()
 
